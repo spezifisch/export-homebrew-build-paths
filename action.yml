@@ -1,6 +1,5 @@
 name: "Export Homebrew build paths for CGO"
 description: "An action to export brew library paths for macOS"
-inputs:
 runs:
   using: "composite"
   steps:
