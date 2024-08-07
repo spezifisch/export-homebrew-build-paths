@@ -1,0 +1,24 @@
+name: "Export Homebrew build paths for CGO"
+description: "An action to export brew library paths for macOS"
+inputs:
+  C_INCLUDE_PATH:
+    description: "Include paths"
+    required: false
+    # intel default path and arm default path
+    default: "/usr/local/include:/opt/homebrew/include"
+  LIBRARY_PATH:
+    description: "Library paths"
+    required: false
+    default: "/usr/local/lib:/opt/homebrew/lib"
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        echo "C_INCLUDE_PATH=${{ inputs.C_INCLUDE_PATH }}:$C_INCLUDE_PATH" >> $GITHUB_ENV
+        echo "LIBRARY_PATH=${{ inputs.LIBRARY_PATH }}:$LIBRARY_PATH" >> $GITHUB_ENV
+        echo "CGO_CFLAGS=-I${{ inputs.C_INCLUDE_PATH }}" >> $GITHUB_ENV
+        echo "CGO_LDFLAGS=-L${{ inputs.LIBRARY_PATH }}" >> $GITHUB_ENV
+      shell: bash
+branding:
+  icon: "terminal"
+  color: "yellow"
