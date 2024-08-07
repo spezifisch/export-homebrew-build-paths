@@ -6,7 +6,7 @@ This GitHub Action sets up environment variables for library paths and include p
 
 ```yaml
       - name: Export paths
-        uses: spezifisch/export-homebrew-build-paths@v0.1.0
+        uses: spezifisch/export-homebrew-build-paths@v0.1.1
 ```
 
 Then do `go build` or your usual build command which links against a library installed by Homebrew.
